@@ -2,12 +2,22 @@ import java.util.Scanner;
 
 public class Try
 {
+	@SuppressWarnings("unused")
 	public static void main(String args[])
 	{
 		@SuppressWarnings("resource")
-		Scanner s = new Scanner(System.in);
+		Scanner s1 = new Scanner(System.in);
+		@SuppressWarnings("resource")
+		Scanner s2 = new Scanner(System.in);
+		@SuppressWarnings("resource")
+		Scanner s3 = new Scanner(System.in);
         checking []checkArr = new checking[50];
         savings []saveArr = new savings[50];
+        for (int i=0;i<50;i++)
+        {
+        	checkArr[i]=new checking();
+        	saveArr[i]=new savings();
+        }
         int count1 = 0;
         int count2 = 0;
         int option=0;
@@ -18,7 +28,7 @@ public class Try
         System.out.println("Enter 4 to display account details!");
         System.out.println("Enter 5 to exit!");
     	System.out.println("Enter the option");
-    	option=s.nextInt();
+    	option=s1.nextInt();
         do {
         	if (option==1)
         	{
@@ -26,37 +36,36 @@ public class Try
         		System.out.println("Which type of account do you want to create?");
         		System.out.println("Enter 1 for savings");
         		System.out.println("Enter 2 for checking");
-        		temp=s.nextInt();
+        		temp=s1.nextInt();
         		if(temp==1)
         		{
         			System.out.println("Creating a savings account :)");
         			System.out.println("Enter your name");
-        			String a=s.nextLine();
+        			String a=s2.nextLine();
         			System.out.println("Enter your address");
-        			String b=s.nextLine();
+        			String b=s2.nextLine();
         			System.out.println("Enter your phone number");
-        			String c=s.nextLine();
+        			String c=s2.nextLine();
         			System.out.println("Enter your 4 digit account number");
-        			int d=s.nextInt();
+        			int d=s1.nextInt();
         			System.out.println("Enter initial deposit amount");
-        			int e=s.nextInt();
+        			int e=s1.nextInt();
         			saveArr[count1].insert(a, b, c, d, e);
         			count1++;
         		}
         		else if(temp==2)
         		{
         			System.out.println("Creating a checking account :)");
-        			System.out.println("Creating a savings account :)");
         			System.out.println("Enter your name");
-        			String a=s.nextLine();
+        			String a=s2.nextLine();
         			System.out.println("Enter your address");
-        			String b=s.nextLine();
+        			String b=s2.nextLine();
         			System.out.println("Enter your phone number");
-        			String c=s.nextLine();
+        			String c=s2.nextLine();
         			System.out.println("Enter your 4 digit account number");
-        			int d=s.nextInt();
+        			int d=s1.nextInt();
         			System.out.println("Enter initial deposit amount");
-        			int e=s.nextInt();
+        			int e=s1.nextInt();
         			checkArr[count2].insert(a, b, c, d, e);
         			count2++;
         		}
@@ -70,20 +79,19 @@ public class Try
         		System.out.println("Which type of account do you want to login?");
                 System.out.println("Enter 1 for savings account login");
                 System.out.println("Enter 2 for checkings account login");
-                int userInput = s.nextInt();
+                int userInput = s1.nextInt();
                 boolean flag = false;
                 int index=0;
                 if(userInput == 1)
                 {
                     System.out.println("enter account number");
-                    int num=s.nextInt();
+                    int num=s1.nextInt();
                     for(int i=0;i<count1;i++)
                     {
-                        if(saveArr[count1].getaccountnumber() == num)
+                        if(saveArr[i].getaccountnumber() == num)
                         {
                             flag = true;
                             index=i;
-                            break;
                         }
                         if(flag==true)
                         {
@@ -92,17 +100,17 @@ public class Try
                         	System.out.println("Enter 3 to check balance");
                         	System.out.println("Enter 4 to calculate Zakat");
                         	System.out.println("Enter 5 to see bank statement");
-                        	int temp1=s.nextInt();
+                        	int temp1=s1.nextInt();
                         	if (temp1==1)
                         	{
                         		System.out.println("Enter the amount of money you want to deposit!");
-                        		int amountmoney=s.nextInt();
+                        		int amountmoney=s1.nextInt();
                         		saveArr[index].makedeposit(amountmoney);
                         	}
                         	else if (temp1==2)
                         	{
                         		System.out.println("Enter the amount of money you want to withdraw!");
-                        		int amountmoney=s.nextInt();
+                        		int amountmoney=s1.nextInt();
                         		saveArr[index].makewithdrawl(amountmoney);
                         	}
                         	else if (temp1==3)
@@ -111,12 +119,12 @@ public class Try
                         	}
                         	else if (temp1==4)
                         	{
-                        		saveArr[index].calculatezakat();
+                        		double temp_zakat=saveArr[index].calculatezakat();
                         	}
                         	else if (temp1==5)
                         	{
                         		System.out.println("Enter transaction amount!");
-                        		int transamount=s.nextInt();
+                        		int transamount=s1.nextInt();
                         		saveArr[index].printstatement(transamount);
                         	}
                         	else
@@ -133,14 +141,13 @@ public class Try
                 else if(userInput==2)
                 {
                     System.out.println("enter account number");
-                    int num=s.nextInt();
-                    for(int i=0;i<count1;i++)
+                    int num=s1.nextInt();
+                    for(int i=0;i<count2;i++)
                     {
-                        if(checkArr[count1].getaccountnumber() == num)
+                        if(checkArr[i].getaccountnumber() == num)
                         {
                             flag = true;
                             index=i;
-                            break;
                         }
                         if(flag==true)
                         {
@@ -148,17 +155,17 @@ public class Try
                         	System.out.println("Enter 2 to withdraw money");
                         	System.out.println("Enter 3 to check balance");
                         	System.out.println("Enter 4 to bank statement");
-                        	int temp1=s.nextInt();
+                        	int temp1=s1.nextInt();
                         	if (temp1==1)
                         	{
                         		System.out.println("Enter the amount of money you want to deposit!");
-                        		int amountmoney=s.nextInt();
+                        		int amountmoney=s1.nextInt();
                         		checkArr[index].makedeposit(amountmoney);
                         	}
                         	else if (temp1==2)
                         	{
                         		System.out.println("Enter the amount of money you want to withdraw!");
-                        		int amountmoney=s.nextInt();
+                        		int amountmoney=s1.nextInt();
                         		checkArr[index].makewithdrawl(amountmoney);
                         	}
                         	else if (temp1==3)
@@ -168,7 +175,7 @@ public class Try
                         	else if (temp1==4)
                         	{
                         		System.out.println("Enter transaction amount!");
-                        		int transamount=s.nextInt();
+                        		int transamount=s1.nextInt();
                         		checkArr[index].printstatement(transamount);
                         	}
                         	else
@@ -186,17 +193,17 @@ public class Try
         	else if(option==3)
         	{
         		System.out.println("Enter the interest rate!");
-        		double rate=s.nextDouble();
+        		double rate=s3.nextDouble();
         		System.out.println("Enter the amount!");
-        		double amount=s.nextDouble();
-        		saveArr[count1].calculateinterest(amount, rate);
+        		double amount=s3.nextDouble();
+        		double temp_interest=saveArr[count1].calculateinterest(amount, rate);
         	}
         	else if(option==4)
         	{
         		System.out.println("Which account details you want?");
         		System.out.println("Enter 1 for savings");
         		System.out.println("Enter 2 for checking");
-        		int inp=s.nextInt();
+        		int inp=s1.nextInt();
         		if (inp==1)
         		{
         			System.out.println("Showing you the details of all savings account!");
@@ -226,8 +233,8 @@ public class Try
         			System.out.println("Wrong input :)");
         		}
         	}
-        	System.out.println("Enter the option");
-        	option=s.nextInt();
+        	System.out.println("Enter the option from the menu!");
+        	option=s1.nextInt();
  
         }while(option!=5);
         System.out.println("Exitting :)");

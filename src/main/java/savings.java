@@ -63,28 +63,32 @@ public class savings {
 		System.out.println("The account holder name is: " + name);
 		System.out.println("The balance is: " + accountbalance);
 	}
-	void makedeposit(int amount)
+	boolean makedeposit(int amount)
 	{
 		if(amount>0)
 		{
 			accountbalance+=amount;
 			System.out.println("The new balance after deposit is: " + accountbalance);
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot enter negative amount:)");
+			return false;
 		}
 	}
-	void makewithdrawl(int amount)
+	boolean makewithdrawl(int amount)
 	{
 		if (amount<accountbalance)
 		{
 			accountbalance-=amount;
 			System.out.println("The new balance after withdrawl is: " + accountbalance);
+			return true;
 		}
 		else
 		{
 			System.out.println("Withdrawl amount is greater than account balance :(");
+			return false;
 		}
 	}
 	void transferamount(savings obj,int amount)
@@ -92,17 +96,19 @@ public class savings {
 		accountbalance-=amount;
 		obj.accountbalance+=amount;
 	}
-	void calculatezakat()
+	double calculatezakat()
 	{
+		double zakat=0.0;
 		if (accountbalance>=20000)
 		{
-			double zakat=(accountbalance*2.5)/100;
+			zakat=(accountbalance*2.5)/100;
 			System.out.println("The Zakat is: " + zakat);
 		}
 		else
 		{
 			System.out.println("Amount balance less than 20000 so can't calculate Zakat");
 		}
+		return zakat;
 	}
 	void printstatement(int amount)
 	{
@@ -122,10 +128,11 @@ public class savings {
 		System.out.println(amount);
 		System.out.println("The balance is: " + accountbalance);
 	}
-	void calculateinterest(double amount,double interestrate)
+	double calculateinterest(double amount,double interestrate)
 	{
 		System.out.println("The interest rate given is: " + interestrate);
 		double interest=amount+((interestrate/100)*amount);
 		System.out.println("The interest amount would be: " + interest);
+		return interest;
 	}
 }

@@ -63,33 +63,38 @@ public class checking {
 		System.out.println("The account holder name is: " + name);
 		System.out.println("The balance is: " + accountbalance);
 	}
-	void makedeposit(int amount)
+	boolean makedeposit(int amount)
 	{
 		if(amount>0)
 		{
 			accountbalance+=amount;
 			System.out.println("The new balance after deposit is: " + accountbalance);
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot enter negative amount:)");
+			return false;
 		}
 	}
-	void makewithdrawl(int amount)
+	boolean makewithdrawl(int amount)
 	{
 		if (amount<accountbalance)
 		{
 			accountbalance-=amount;
 			System.out.println("The new balance after withdrawl is: " + accountbalance);
+			return true;
 		}
-		else if (amount>accountbalance && amount<5000)
+		else if (amount>accountbalance && (amount-accountbalance<5000))
 		{
 			accountbalance-=amount;
 			System.out.println("The new balance after withdrawl is: " + accountbalance);
+			return true;
 		}
 		else
 		{
 			System.out.println("Not Enough Balance :(");
+			return false;
 		}
 	}
 	void transferamount(checking obj,int amount)
